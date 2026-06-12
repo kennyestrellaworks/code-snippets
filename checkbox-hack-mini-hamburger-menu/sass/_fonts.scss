@@ -1,0 +1,26 @@
+@font-face {
+    font-family: "Abel Regular";
+    src: url("../fonts/Abel-Regular.eot");
+    src: url("../fonts/Abel-Regular.eot?#iefix") format("embedded-opentype"),
+        url("../fonts/Abel-Regular.woff2") format("woff2"),
+        url("../fonts/Abel-Regular.woff") format("woff"),
+        url("../fonts/Abel-Regular.ttf") format("truetype"),
+        url("../fonts/Abel-Regular.svg#Abel_Regular") format("svg");
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Museo Sans Rounded 700";
+    src: url("../fonts/Museo-Sans-Rounded-700.eot");
+    src: url("../fonts/Museo-Sans-Rounded-700.eot?#iefix") format("embedded-opentype"),
+        url("../fonts/Museo-Sans-Rounded-700.woff2") format("woff2"),
+        url("../fonts/Museo-Sans-Rounded-700.woff") format("woff"),
+        url("../fonts/Museo-Sans-Rounded-700.ttf") format("truetype"),
+        url("../fonts/Museo-Sans-Rounded-700.svg#Museo_Sans_Rounded_700") format("svg");
+    font-weight: normal;
+    font-style: normal;
+}
+
+$font-abel-regular: "Abel Regular", sans-serif;
+$font-museo-sans-rounded-700: "Museo Sans Rounded 700", sans-serif;
