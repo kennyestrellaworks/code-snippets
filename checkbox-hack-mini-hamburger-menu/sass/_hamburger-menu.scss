@@ -1,0 +1,209 @@
+@use 'variables';
+@use 'mixins';
+@use 'colors';
+@use 'fonts';
+
+.hamburger-nav {
+    position: fixed;    
+    width: 100%;
+    z-index: 2000;
+    @include mixins.mediaQuery(viewport1920) {
+        width: variables.$viewport-width;
+    }
+    &__wrap {
+        position: absolute;
+        right: 0;
+    }
+    &__checkbox {
+        display: none;
+    }
+    &__icon {
+        position: absolute;
+        right: 0.8rem;
+        height: 7rem;
+        width: 6.6rem;
+        background-color: colors.$color-white;
+        cursor: pointer;
+        z-index: 1900;
+    }
+    &__bars {
+        position: absolute;
+        top: 3.2rem;
+        left: 1.9rem;
+        z-index: 2010;        
+        &,
+        &::before,
+        &::after {
+            width: 2.6rem;
+            height: .4rem;
+            background-color: colors.$color-red700;
+            display: inline-block;
+            border-radius: 5rem;
+        }
+        &::before,
+        &::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            transition: variables.$transition-all-slower;
+        }
+        &::before {
+            top: -1rem;
+        }
+        &::after {
+            top: 1rem;
+        }
+    }
+    &__icon:hover &__bars::before {
+        top: -1.2rem;
+    }
+    &__icon:hover &__bars::after {
+        top: 1.2rem;
+    }
+    &__checkbox:checked + &__icon &__bars {
+        background-color: transparent;
+    }
+    &__checkbox:checked + &__icon &__bars::before {
+        top: 0;
+        transform: rotate(135deg);
+    }
+    &__checkbox:checked + &__icon &__bars::after {
+        top: 0;
+        transform: rotate(-135deg);
+    }
+    &__checkbox:checked + &__icon:hover &__bars::before {
+        width: 3rem;
+    }
+    &__checkbox:checked + &__icon:hover &__bars::after {
+        width: 3rem;
+    }
+    ///////////////////////////////
+    // Dropdown contains Menu, Social
+    &__dropdown {
+        position: absolute;
+        top: 0rem;
+        right: 0;        
+        height: 0;
+        width: 39.6rem; 
+        overflow: hidden;
+        z-index: 1800;
+        transition: variables.$transition-all-slowest;
+        @include mixins.mediaQuery(viewport500) {
+            width: 30rem;
+        }
+        &::before  {
+            content: "";
+            position: absolute;
+            top: 0;
+            right: 0;
+            background-color: colors.$color-red700;
+            width: 8.2rem;
+            height: 7rem;
+            transition: variables.$transition-all-slower;
+        }
+        &-wrap {  
+            position: absolute;
+            top: 7rem;
+            right: 0;   
+            width: 39.6rem;                  
+            transition: variables.$transition-all-slower;
+            background-color: colors.$color-red700;
+            @include mixins.mediaQuery(viewport500) {
+                width: 30rem;
+            }
+        }
+    }
+    &__checkbox:checked ~ &__dropdown {
+        height: 60rem;
+    }
+    // Menu ////////////////////////
+    &__menu {
+        padding-left: 3.2rem;
+        &-wrap {
+            margin-top: 3.6rem ;
+            @include mixins.mediaQuery(viewport500) {
+                margin-top: 1.6rem;
+            }
+        }
+        &-list {
+            list-style: none;
+        }
+        &-item {            
+            position: relative;                  
+        }
+        &-item-extra {            
+            &::after {
+                content: "";
+                position: absolute;
+                left: 0;
+                bottom: 0;
+                height: .1rem;
+                width: 100%; 
+                background-color: colors.$color-orange600;
+                transition: variables.$transition-all-slower;
+            }
+        }
+        &-item:hover &-item-extra::after {
+            height: 100%;
+        }
+        &-item:hover {
+            cursor: pointer;
+        }
+        &-link {
+            transition: variables.$transition-all-slower;  
+            padding: 2.2rem 0 1.6rem 3.2rem;
+            position: relative; 
+            z-index: 1990;
+            @include mixins.mediaQuery(viewport500) {
+                padding: 1.8rem 0 1.2rem 2.4rem;
+            }
+            &:link,
+            &:visited {
+                display: block;                
+                text-decoration: none;
+                text-transform: uppercase;
+                color: colors.$color-red200;
+                font-family: fonts.$font-museo-sans-rounded-700;
+                font-size: 2.4rem;                                               
+            }
+            &:hover,
+            &:active {                
+                color: colors.$color-white;
+            }
+        }
+    }
+    // Social ////////////////////////
+    &__social {
+        background-color: colors.$color-red900;
+        margin-top: 4rem;
+        padding: 2.2rem 0 2.6rem 0;
+        @include mixins.mediaQuery(viewport500) {
+            padding: 1.8rem 0 2.2rem 0;
+        }
+        &-wrap {
+            margin-left: 6rem;
+            @include mixins.mediaQuery(viewport500) {
+                margin-left: 5.6rem;
+            }
+        }
+        &-item {
+            &:not(:last-child) {
+                margin-right: 1.2rem;
+            }
+        }
+        &-list {
+            list-style-type: none;
+            display: flex;
+        }
+        &-link-icon {
+            fill: colors.$color-red400;
+            transition: variables.$transition-all-slower;
+            @include mixins.mediaQuery(viewport500) {
+                width: 4rem;
+            }
+            &:hover {                
+                fill: colors.$color-orange600;
+            }
+        }
+    }
+}
